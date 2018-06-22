@@ -1,0 +1,7 @@
+code,message_eng,message_spa
+1,This row has NA at variables: '%s'.---Correct,Esta fila tiene NA en las variables: '%s'.---Corregir
+2,Travel code %d has the same length structure.---Correct,El viaje con código %d posee la misma estructura de tallas.---Corregir
+3,Duplicated length sampling into the same travel.---Merge freqs,Muestreo duplicado de talla dentro del mismo viaje.---Combinar frecuencias
+4,This row is a 1-row-travel.---Correct or remove,Este es un viaje de 1 fila.---Corregir o remover
+5,This is a 1-row-travel due to variable '%s'.---Correct,Este es un viaje de 1 fila debido a variable '%s'.---Corregir
+6,Diference between teorica and observaded sampling weight is greater than %1.3f.---Correct,La diferencia entre el peso de muestra teórico y observado es mayor a %1.3f.---Corregir
