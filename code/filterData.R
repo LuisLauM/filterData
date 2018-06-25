@@ -2,9 +2,9 @@ if(file.exists("code/filterData.Rout")) unlink(x = "code/filterData.Rout")
 rm(list = ls()); gc(reset = TRUE)
 
 # Parameters --------------------------------------------------------------
-# Path of data
-# filename <- "data/originalData.xlsx"
-filename <- file.choose(new = TRUE)
+# Path for input
+filename <- choose.files(default = getwd(), multi = FALSE, 
+                         caption = "Select the directory for the input")
 
 # Path for message table
 messageCodeFile <- "data/messageCodes.csv"
@@ -17,6 +17,10 @@ language <- "spanish"
 ab_tolerance <- list(a = 0.0154,
                      b = 2.9462,
                      tolerance = 5)
+
+# Path for output
+outDir <- choose.dir(caption = "Select the directory for the output", 
+                     default = getwd())
 
 # Analysis ----------------------------------------------------------------
 
@@ -249,6 +253,7 @@ for(i in seq_along(obsSugIndex)){
 }
 
 # Save worksheet file
+if(!dir.exists(paths = outDir)) dir.create(path = outDir, showWarnings = FALSE)
 write.xlsx(x = originalData, file = paste0("outputs/output_", format(Sys.time(), format = "%Y%m%d-%H%M%S"), ".xlsx"))
 
 cat("\nEverything was OK!\n")

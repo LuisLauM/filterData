@@ -38,3 +38,4 @@ rsconnect/
 .Rproj.user
 /data/originalData.xlsx
 *.xlsx
+/*.Rproj
