@@ -1,0 +1,12 @@
+# Lenguaje de avisos en la salida
+# Language for output warnings
+language = spanish
+
+# Valores de relación longitud-peso (a & b)
+# Values for Length-Weight relation (a & b)
+a = 0.0154
+b = 2.9462
+
+# Tolerancia máxima en la diferencia de pesos de muestra teórico-observado
+# Max tolerance for difference between teoric-observed sampling weights
+tolerance = 5

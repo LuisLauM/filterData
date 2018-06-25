@@ -9,15 +9,6 @@ filename <- choose.files(default = getwd(), multi = FALSE,
 # Path for message table
 messageCodeFile <- "data/messageCodes.csv"
 
-# Select language for messages
-language <- "english"
-language <- "spanish"
-
-# Arguments for weight filter
-ab_tolerance <- list(a = 0.0154,
-                     b = 2.9462,
-                     tolerance = 5)
-
 # Path for output
 outDir <- choose.dir(caption = "Select the directory for the output", 
                      default = getwd())
@@ -59,6 +50,22 @@ vectorINvector <- function(x, pattern){
   
   return(out)
 }
+
+# Read extra arguments
+extraArguments <- readLines(con = "filterArguments.txt", warn = FALSE, encoding = "UTF-8")
+extraArguments <- gsub(x = extraArguments, pattern = " ", replacement = "")
+
+# Get language
+language <- extraArguments[grepl(x = extraArguments, pattern = "language=")]
+language <- gsub(x = language, pattern = "language=", replacement = "")
+
+# Get a_b and tolerance
+ab_tolerance <- sapply(c("a=", "b=", "tolerance="), grepl, x = extraArguments)
+ab_tolerance <- apply(ab_tolerance, 2, function(x, y) x[y], x = extraArguments)
+ab_tolerance <- mapply(gsub, pattern = names(ab_tolerance), x = ab_tolerance, 
+                       MoreArgs = list(replacement = ""))
+ab_tolerance <- as.list(as.numeric(ab_tolerance))
+names(ab_tolerance) <- c("a", "b", "tolerance")
 
 # Read data
 originalData <- read.xlsx(xlsxFile = filename, sheet = 1, check.names = TRUE)
