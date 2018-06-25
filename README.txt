@@ -3,8 +3,8 @@
 ################################################################################
 
 ================================================================================
-Autores y Responsables: Wencheng Lau-Medrano (llau@imarpe.gob.pe), 
-						Miguel Pérez (mperez@imarpe.gob.pe)
+Autores y Responsables: Wencheng Lau-Medrano (llau@imarpe.gob.pe),
+                        Miguel Pérez (mperez@imarpe.gob.pe)
 Institución: DGIRDL-IMARPE
 Versión: 0.1.0
 ================================================================================

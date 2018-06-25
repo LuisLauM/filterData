@@ -68,6 +68,7 @@ ab_tolerance <- as.list(as.numeric(ab_tolerance))
 names(ab_tolerance) <- c("a", "b", "tolerance")
 
 # Read data
+oldColnames <- colnames(read.xlsx(xlsxFile = filename, sheet = 1, check.names = FALSE))
 originalData <- read.xlsx(xlsxFile = filename, sheet = 1, check.names = TRUE)
 
 # Correct column names
@@ -259,9 +260,13 @@ for(i in seq_along(obsSugIndex)){
   originalData[,obsSugIndex[i]] <- gsub(x = originalData[,obsSugIndex[i]], replacement = "", pattern = "^( \\& )", perl = TRUE)
 }
 
+# Set colnames as the original
+colnames(originalData)[seq_along(oldColnames)] <- oldColnames
+
 # Save worksheet file
 if(!dir.exists(paths = outDir)) dir.create(path = outDir, showWarnings = FALSE)
-write.xlsx(x = originalData, file = paste0("outputs/output_", format(Sys.time(), format = "%Y%m%d-%H%M%S"), ".xlsx"))
+write.xlsx(x = originalData, file = paste0("outputs/output_", format(Sys.time(), format = "%Y%m%d-%H%M%S"), ".xlsx"),
+           firstRow = TRUE, colWidths = "auto")
 
 cat("\nEverything was OK!\n")
 if(file.exists("code/filterData.Rout")) unlink(x = "code/filterData.Rout")
